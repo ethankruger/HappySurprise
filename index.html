@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap to Reveal Love</title>
+    <style>
+        /* General styling */
+        body {
+            background-color: black;
+            color: red;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            margin-top: 5%;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+            animation: flicker 1.5s infinite alternate;
+        }
+
+        /* Image styling */
+        .hidden-image {
+            display: none;
+            margin-top: 20px;
+            max-width: 80%;
+            border: 3px solid red;
+            border-radius: 10px;
+        }
+
+        /* Button styling */
+        #revealButton {
+            background-color: red;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            animation: pulse 2s infinite alternate;
+        }
+
+        #revealButton:hover {
+            background-color: darkred;
+        }
+
+        /* Flicker animation for suspense */
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.9; }
+        }
+
+        /* Button pulse animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Tap to reveal love ❤️ xoxo Ethan ❤️</h1>
+    <button id="revealButton">Reveal</button>
+    <div id="images">
+        <!-- Base64-encoded images -->
+        <img id="image1" class="hidden-image" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAAAAAAAD/..." alt="First Image">
+        <img id="image2" class="hidden-image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAA..." alt="Second Image">
+    </div>
+
+    <script>
+        // Images to reveal
+        const images = [
+            document.getElementById('image1'),
+            document.getElementById('image2')
+        ];
+        let currentIndex = 0;
+
+        // Button click event
+        document.getElementById('revealButton').addEventListener('click', function() {
+            if (currentIndex < images.length) {
+                images[currentIndex].style.display = 'block';
+                currentIndex++;
+            }
+            
+            // Update button text when done
+            if (currentIndex === images.length) {
+                this.innerText = "That's it! ❤️";
+                this.disabled = true;
+                this.style.backgroundColor = "gray";
+                this.style.cursor = "not-allowed";
+            }
+        });
+    </script>
+</body>
+</html>
 
